@@ -48,7 +48,7 @@ guessButton.addEventListener("click", function (e) {
 
     console.log(validatedInput);
 
-    if (validatedInput !== undefined) {
+    if (validatedInput) {
         makeGuess(validatedInput);
     }
 });
@@ -56,12 +56,12 @@ guessButton.addEventListener("click", function (e) {
 // Validate the user input (check if it's not a letter, more than one character or empty)
 const validatePlayerInput = function (userInput) {
     // A regular expression to ensure the player inputs a letter
-    const acceptedLetter = /[a-zA-Z]/
+    const acceptedLetters = /[a-zA-Z]/;
     if (userInput === "") {
         message.innerText = "You didn't enter any letters!";
     } else if (userInput.length > 1) {
         message.innerText = "Please enter 1 character only";
-    } else if (!userInput.match(acceptedLetter)) {
+    } else if (!userInput.match(acceptedLetters)) {
         message.innerText = "Please enter a letter from A to Z";
     } else {
         return userInput;
@@ -70,11 +70,11 @@ const validatePlayerInput = function (userInput) {
 
 // Capture user input
 const makeGuess = function (letter) {
-    const upperCaseLetter = letter.toUpperCase();
-    if (guessedLetters.includes(upperCaseLetter)) {
+    letter = letter.toUpperCase();
+    if (guessedLetters.includes(letter)) {
         message.innerText = "You guessed this letter before ... Guess another one!"
     } else {
-        guessedLetters.push(upperCaseLetter);
+        guessedLetters.push(letter);
         console.log(guessedLetters);
     }
 };
