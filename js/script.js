@@ -170,6 +170,7 @@ const startOver = function () {
 
 // Event listener and handler for Play Again button
 playAgainButton.addEventListener("click", function () {
+    // reset to original values
     message.classList.remove("win");
     message.innerText = "";
     guessedLettersElement.innerText = "";
@@ -177,13 +178,18 @@ playAgainButton.addEventListener("click", function () {
     guessedLetters = [];
     circles = [];
     remainingGuessesNumber.innerText = `${remainingGuesses} guesses`
+    
+    // Get a new word
+    getWord();
+
+    // Show the hidden UI elements
     guessButton.classList.remove("hide");
     remainingGuessesElement.classList.remove("hide");
     guessedLettersElement.classList.remove("hide");
     input.classList.remove("hide");
     inputLabel.classList.remove("hide");
     playAgainButton.classList.add("hide");
-    getWord();
+    
 });
 
 
