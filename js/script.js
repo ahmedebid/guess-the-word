@@ -21,16 +21,18 @@ const guessedLetters = [];
 // Number of guesses allowed (TODO: I think this should be at least equal to the number of characters in the word)
 let remainingGuesses = 8;
 
+remainingGuessesNumber.innerText = `${remainingGuesses} guesses`;
+
 // A function to fetch words form a txt file
 const getWord = async function () {
-    const data = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
-    const words = await data.text();
+    const response = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+    const words = await response.text();
 
     // create an array to store the words
     const wordsArray = words.split("\n");
 
     // create a random index
-    const randomIndex = Math.floor(Math.random() * 823);
+    const randomIndex = Math.floor(Math.random() * wordsArray.length);
     
     // Pull a random word and assign it to "word" global variable
     word = wordsArray[randomIndex].trim();
@@ -138,7 +140,7 @@ const countRemainingGuesses = function (guess) {
     }
 
     if (remainingGuesses === 0) {
-        message.innerText = `Game Over! ... The word was: ${word.toUpperCase()}`;
+        message.innerHTML = `Game Over! ... The word was: <span class="highlight">${word.toUpperCase()}</span>`;
         remainingGuessesNumber.innerText = `${remainingGuesses} guesses`
         guessButton.disabled = true; // To prevent submitting guesses after the game is over
     } else if (remainingGuesses === 1) {
