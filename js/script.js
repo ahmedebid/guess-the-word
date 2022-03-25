@@ -38,8 +38,6 @@ const getWord = async function () {
     
     // Pull a random word and assign it to "word" global variable
     word = wordsArray[randomIndex].trim();
-
-    console.log(word);
     
     // Call the placeholder function (that addes circle symbols instead of the letters)
     addCircleSymbols(word);
@@ -62,7 +60,6 @@ guessButton.addEventListener("click", function (e) {
     e.preventDefault();
     // capturing the user input
     const userInput = input.value;
-    //console.log(userInput);
     // emptying the input field
     input.value = "";
 
@@ -71,8 +68,6 @@ guessButton.addEventListener("click", function (e) {
 
     // call the function to check the input
     const validatedInput = validatePlayerInput(userInput);
-
-    //console.log(validatedInput);
 
     if (validatedInput) {
         makeGuess(validatedInput);
@@ -101,7 +96,6 @@ const makeGuess = function (letter) {
         message.innerText = "You guessed this letter before ... Guess another one!"
     } else {
         guessedLetters.push(letter);
-        //console.log(guessedLetters);
         showGuessedLetters();
         countRemainingGuesses(letter);
         updateWordInProgress(guessedLetters);
@@ -190,7 +184,6 @@ playAgainButton.addEventListener("click", function () {
     inputLabel.classList.remove("hide");
     playAgainButton.classList.add("hide");
     getWord();
-    console.log("Play Again Button Clicked!");
 });
 
 
